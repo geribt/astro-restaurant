@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import PlatController from "../controllers/PlatController";
+import Plat  from "../components/Plat.astro";
+let platController = new PlatController();
+
+let menu = await platController.getCarta()
+
+
+---
+
+
+<Layout>
+
+	<h1>CARTA</h1>
+
+	{
+		menu.length ? menu.map(plat => <Plat dades={plat} />) : <div></div>
+	}
+
+</Layout>
