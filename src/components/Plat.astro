@@ -24,9 +24,10 @@ let glutenIcon = '../../public/img/sin-gluten.png';
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{dades.Nom}{dades.Vegetaria ? <img src={vegetaIcon} height="35px" alt="Vegetarià"/> : null}
-                {dades.Gluten ? <img src={glutenIcon} height="35px" alt="GlutenFree"/> : null}{dades.Preu}
-              </h5>
+              <div class="card-title">{dades.Nom}{dades.Vegetaria ? <img src={vegetaIcon} height="35px" alt="Vegetarià"/> : null}
+                {dades.Gluten ? <img src={glutenIcon} height="35px" alt="GlutenFree"/> : null}
+              </div>
+              <div class="preu">{dades.Preu}</div>
             </div>
           </div>
         </div>
