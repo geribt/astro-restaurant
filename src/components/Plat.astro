@@ -2,9 +2,7 @@
 
 let {dades} = Astro.props;
 let vegetaIcon = '../../public/img/vegano.png';
-//fer un fetch dels plats
-dades.getCarta();
-//fer map de cada tipus
+let glutenIcon = '../../public/img/sin-gluten.png';
 
 ---
 <style>
@@ -19,7 +17,6 @@ dades.getCarta();
 </style>
 
 <div>
-    <h1>{dades.Tipus}</h1>
     <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
@@ -27,7 +24,8 @@ dades.getCarta();
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{dades.Nom}     {dades.Vegetaria ? <img src={vegetaIcon} height="35px" alt="Vegetarià"/> : null}{dades.Preu}
+              <h5 class="card-title">{dades.Nom}{dades.Vegetaria ? <img src={vegetaIcon} height="35px" alt="Vegetarià"/> : null}
+                {dades.Gluten ? <img src={glutenIcon} height="35px" alt="GlutenFree"/> : null}{dades.Preu}
               </h5>
             </div>
           </div>

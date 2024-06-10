@@ -1,0 +1,23 @@
+---
+const { Nom, Correu, Persones, Telefon, Data, Hora, Id } = Astro.props.dades;
+---
+
+<div class="border mb-8 w-1/2 p-8 bg-white">
+    <h1 class="text-xl font-bold text-center">{Nom}</h1>
+
+    <hr class="my-4" />
+    <h2>ID: {Id}</h2>
+    <h2>Correu: {Correu}</h2>
+    <h2>Telefon: {Telefon}</h2>
+    <h2>Data: {Data}</h2>
+    <h2>Hora: {Hora}</h2>
+    <h2>Persones: {Persones}</h2>    
+
+    <a href={"/eliminar/" + Id}>
+        <button
+            class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 text-sm rounded "
+        >
+            Eliminar
+        </button>
+    </a>
+</div>

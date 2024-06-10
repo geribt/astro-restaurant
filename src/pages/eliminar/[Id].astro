@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ReservaController from "../../controllers/ReservaController";
+import { Image } from "astro:assets";
+// Exemple d'ús:
+
+const { Id } = Astro.params;
+let  item;
+console.log(Id);
+
+const baseController = new ReservaController();
+
+
+if (Astro.request.method === "POST") {
+    const data = await Astro.request.formData();
+    const id = data.get("id");
+
+    await baseController.deleteItem(id);
+
+    return Astro.redirect("/");
+} else {
+     item = await baseController.getItemById(Id);
+}
+---
+
+<Layout title="elimina recepta">
+    <h1>Segur q vols eliminar {item.Nom}? </h1>
+
+    <form method="post">
+        <input value={Id} name="id" type="hidden" />
+
+            <button
+                class="bg-red-500 hover:bg-red-700 text-white py-1 px-2 text-sm rounded "
+            >
+                Sí
+            </button>
+
+        <a href={"/"}>
+            <button
+            type="button"
+                class="bg-green-500 hover:bg-green-700 text-white py-1 px-2 text-sm rounded "
+            >
+                No
+            </button>
+        </a>
+
+
+     
+    </form>
+</Layout>

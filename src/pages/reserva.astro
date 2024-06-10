@@ -1,10 +1,70 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import ReservaController from "../controllers/ReservaController";
+
+if (Astro.request.method === "POST") {
+    const reservaController = new ReservaController();
+    const data = await Astro.request.formData();
+    const Nom = data.get("name");
+    const Correu = data.get("email");
+	const Telefon = data.get("phone");
+    const Data = data.get("date");
+    const Hora = data.get("time");
+    const Persones = data.get("guests");
+	const ob={
+		Nom,
+		Correu,
+		Telefon,
+		Data,
+		Hora,
+		Persones
+	}
+    await reservaController.createItem(ob);
+    return Astro.redirect("/");
+}
 ---
 
 
 <Layout>
 
-	<h1>Index</h1>
+	<h1>Reservar</h1>
+
+	<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h2 class="text-center mb-4">Reserva de Restaurant</h2>
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Hora</label>
+                        <input type="time" class="form-control" id="time" name="time" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="guests" class="form-label">Número de Invitados</label>
+                        <input type="number" class="form-control" id="guests" name="guests" min="1" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Enviar Reserva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 </Layout>

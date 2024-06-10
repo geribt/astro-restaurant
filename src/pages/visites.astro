@@ -1,0 +1,12 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import ReservaController from "../controllers/ReservaController";
+import Visita from "../components/Visita.astro";
+const reservaController = new ReservaController();
+const items = await reservaController.getAll();
+---
+
+<Layout>
+    {items?.map((e) => <Visita dades={e} />)}
+</Layout>
