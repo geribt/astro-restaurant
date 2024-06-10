@@ -7,7 +7,9 @@ let platController = new PlatController();
 
 let menu = await platController.getMenu()
 
-
+let entrants = menu.filter(plat => plat.Tipus==="Entrants");
+let principals = menu.filter(plat => plat.Tipus==="Principals");
+let postres = menu.filter(plat => plat.Tipus==="Postres");
 ---
 
 
@@ -15,8 +17,17 @@ let menu = await platController.getMenu()
 
 	<h1>MENU</h1>
 
+	<h2>Entrants</h2>
 	{
-		menu.length ? menu.map(plat => <Plat dades={plat} />) : <div></div>
+		entrants.length ? entrants.map(plat => <Plat dades={plat} />) : <div></div>
+	}
+	<h2>Principals</h2>
+	{
+		principals.length ? principals.map(plat => <Plat dades={plat} />) : <div></div>
+	}
+		<h2>Postres</h2>
+	{
+		postres.length ? postres.map(plat => <Plat dades={plat} />) : <div></div>
 	}
 
 </Layout>
